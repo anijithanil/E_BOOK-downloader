@@ -32,7 +32,8 @@ def register(request):
 
     else:
         return render(request,'reg_app/register.html')
-
+def home(request):
+    return render(request,'reg_app/home.html')
 
 # login code
 def login(request):

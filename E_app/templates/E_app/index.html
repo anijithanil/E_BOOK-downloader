@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,82 +6,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
-<body class="bg-success  text-dark bg-opacity-25">
-    <div>
-        <nav class="navbar navbar-expand-lg bg-light ">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">EbOOKs</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
+<body class="bg-primary p-0 text-dark bg-opacity-25" >
 
 
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link active">hello {{user.first_name}}</a>
-                        </li>
-                        <li class="nav-item"></li>
-                        <a class="nav-link" href="{% url 'logout' %}">logout</a>
-                        </li>
-                        {% else %}
 
-                        <li class="nav-item">
+ 
+            <div>
+                <nav class="navbar navbar-expand-lg bg-light ">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">EbOOKs</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
 
-                            <a class="nav-link" href="{% url 'login' %}">Login</a>
-                        </li>
 
-                        {% endif %}
+                                {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link active">hello {{user.first_name}}</a>
+                                </li>
+                                <li class="nav-item"></li>
+                                <a class="nav-link" href="{% url 'logout' %}">logout</a>
+                                </li>
+                                {% else %}
 
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </div>
-    {% if user.is_authenticated %}
-    <div class="container pt-5">
-        <div class="row">
-            {% for i in books %}
-            <div class="col-md-4 mt-4">
-                <div class="card" style="width: 18rem;height:21rem">
+                                <li class="nav-item">
 
-                    <img src="{{i.image.url}}" style="width: 286px;height:200px" class="card-img-top" alt="...">
+                                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                </li>
 
-                    <div class="card-body">
-                        <p class="card-text text-center">{{i.name}}</p>
-                        <p class="card-text">{{i.desc}}</p>
-                        <a href="{{i.file.url}}">click here</a>
+                                {% endif %}
+
+                            </ul>
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                </nav>
             </div>
-            {% endfor %}
+            <div class="container pt-5">
+                <div class="row">
+                    {% for i in books %}
+                    <div class="col-md-4 mt-4">
+                        <div class="card" style="width: 18rem;height:21rem">
 
-        </div>
+                            <img src="{{i.image.url}}" style="width: 286px;height:200px" class="card-img-top" alt="...">
 
-    </div>
-    {% endif %}
+                            <div class="card-body">
+                                <p class="card-text text-center">{{i.name}}</p>
+                                <p class="card-text">{{i.desc}}</p>
+                                {% if user.is_authenticated %}
+                                <a href="{{i.file.url}}">click here</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
 
-    
+                </div>
+
+            </div>
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>
